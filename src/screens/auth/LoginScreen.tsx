@@ -1,8 +1,33 @@
-import React from 'react';
-import { View, TextInput, TouchableOpacity, Text, StyleSheet, Image } from 'react-native';
-import {LoginScreenProps} from "../../type/navigation";
+import React, {useState} from 'react';
+import {View, TextInput, TouchableOpacity, Text, StyleSheet, Alert} from 'react-native';
+import {LoginScreenProps} from "../../types/navigation";
+import {LoginRequestDto} from "../../dtos/auth/LoginDto";
+import {useAuth} from "../../hooks/auth/useAuth";
 
-const LoginScreen = ({ navigation, route }: LoginScreenProps) => {
+const LoginScreen = ({ navigation}: LoginScreenProps) => {
+    const { login, isAuthenticated } = useAuth();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleLogin = async () => {
+        const credentials: LoginRequestDto = {
+            email,
+            password
+        };
+
+        try {
+            await login(credentials);
+
+            if (isAuthenticated) {
+                navigation.navigate('Home');
+            } else {
+                Alert.alert('Login Failed');
+            }
+        } catch (error) {
+            Alert.alert('Login Error');
+        }
+    };
+
     return (
         <View style={styles.container}>
             <TextInput
@@ -10,34 +35,36 @@ const LoginScreen = ({ navigation, route }: LoginScreenProps) => {
                 style={styles.input}
                 keyboardType="email-address"
                 autoCapitalize="none"
+                onChangeText={setEmail}
             />
             <TextInput
-                placeholder="Mật khẩu"
+                placeholder="Password"
                 style={styles.input}
                 secureTextEntry
+                onChangeText={setPassword}
             />
             <TouchableOpacity
                 style={styles.button}
-                onPress={() => console.log('Đăng nhập')}
+                onPress={handleLogin}
             >
-                <Text style={styles.buttonText}>Đăng nhập</Text>
+                <Text style={styles.buttonText}>Login</Text>
             </TouchableOpacity>
             <TouchableOpacity
-                onPress={() => console.log('Quên mật khẩu')}
+                onPress={() => console.log('Forget Password')}
             >
-                <Text style={styles.link}>Quên mật khẩu?</Text>
+                <Text style={styles.link}>Forgot password?</Text>
             </TouchableOpacity>
             <TouchableOpacity
                 style={styles.button}
                 onPress={() => navigation.navigate('Register')}
             >
-                <Text style={styles.buttonText}>Đăng ký</Text>
+                <Text style={styles.buttonText}>Register</Text>
             </TouchableOpacity>
             <TouchableOpacity
                 style={[styles.button, styles.googleButton]}
-                onPress={() => console.log('Đăng nhập bằng Google')}
+                onPress={() => console.log('Login with Google')}
             >
-                <Text style={styles.buttonText}>Đăng nhập bằng Google</Text>
+                <Text style={styles.buttonText}>Login with Google</Text>
             </TouchableOpacity>
         </View>
     );
