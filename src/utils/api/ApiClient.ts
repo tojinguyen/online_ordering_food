@@ -1,7 +1,6 @@
-import axios from 'axios';
+import axios from "axios";
 
 export const ApiClient = axios.create({
-    baseURL: 'https://api.example.com',
-    headers: { 'Content-Type': 'application/json' }
+  baseURL: "https://localhost:8080/api/v1",
+  headers: { "Content-Type": "application/json" },
 });
-
