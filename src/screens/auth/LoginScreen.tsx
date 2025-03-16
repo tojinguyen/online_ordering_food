@@ -26,6 +26,7 @@ const LoginScreen = ({ navigation }: LoginScreenProps) => {
       await login(credentials);
 
       if (isAuthenticated) {
+        console.log("Login successful");
         navigation.navigate("Home");
       } else {
         Alert.alert("Login Failed");

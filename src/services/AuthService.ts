@@ -1,4 +1,8 @@
-import { LoginRequestDto, LoginResponseDto } from "../dtos/auth/LoginDto";
+import {
+  LoginRequestDto,
+  LoginResponseDto,
+  RefreshAccessTokenRequestDto,
+} from "../dtos/auth/LoginDto";
 import {
   RegisterRequestDto,
   RegisterResponseDto,
@@ -8,7 +12,6 @@ import {
 import { ApiClient } from "../utils/api/ApiClient";
 import { ApiResponse } from "../utils/api/ApiTypes";
 import {
-  getRefreshToken,
   storeAccessToken,
   storeRefreshToken,
 } from "../utils/storage/storageAuth";
@@ -44,14 +47,13 @@ export const AuthService = {
     await storeRefreshToken("");
   },
 
-  refreshToken: async (): Promise<ApiResponse<LoginResponseDto>> => {
+  refreshAccessToken: async (
+    credentials: RefreshAccessTokenRequestDto
+  ): Promise<ApiResponse<LoginResponseDto>> => {
     try {
-      const refreshToken = await getRefreshToken();
-      if (!refreshToken) throw new Error("No refresh token");
-
       const response = await ApiClient.post<ApiResponse<LoginResponseDto>>(
         "/auth/refresh-token",
-        { refreshToken }
+        { credentials }
       );
 
       if (response.data.success && response.data.data) {
@@ -86,6 +88,17 @@ export const AuthService = {
       const response = await ApiClient.post<
         ApiResponse<VerifyRegisterCodeResponseDto>
       >("/auth/verify-register-code", verifyRequest);
+
+      if (response.data.success && response.data.data?.accessToken) {
+        if (response.data.data.accessToken) {
+          await storeAccessToken(response.data.data.accessToken);
+        }
+
+        if (response.data.data.refreshToken) {
+          await storeRefreshToken(response.data.data.refreshToken);
+        }
+      }
+
       return response.data;
     } catch (error: any) {
       throw new Error(error.message || "System Error");

@@ -8,6 +8,7 @@ import {
   Text,
   View,
 } from "react-native";
+import { RefreshAccessTokenRequestDto } from "../../dtos/auth/LoginDto";
 import { useAuth } from "../../hooks/auth/useAuth";
 import { AuthService } from "../../services/AuthService";
 import { SplashScreenProps } from "../../types/navigation";
@@ -35,7 +36,13 @@ const SplashScreen = ({ navigation }: SplashScreenProps) => {
           return;
         }
 
-        const response = await AuthService.refreshToken();
+        const refreshAccessTokenRequest: RefreshAccessTokenRequestDto = {
+          refreshToken,
+        };
+
+        const response = await AuthService.refreshAccessToken(
+          refreshAccessTokenRequest
+        );
         console.log("Token refresh response:", response);
 
         if (response.success) {

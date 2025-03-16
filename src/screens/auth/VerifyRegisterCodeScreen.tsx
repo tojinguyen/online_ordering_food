@@ -26,11 +26,13 @@ const VerifyRegisterCodeScreen = ({ route, navigation }: any) => {
       );
       if (response.success) {
         Alert.alert("Success", "Account verified! You can now log in.");
-        navigation.replace("Login");
+        navigation.replace("Home");
       } else {
+        navigation.replace("Login");
         Alert.alert("Error", response.message);
       }
     } catch (error) {
+      navigation.replace("Login");
       Alert.alert("Error", "Verification failed. Try again.");
     }
     setLoading(false);
