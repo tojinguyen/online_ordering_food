@@ -13,7 +13,7 @@ const RegisterScreen = ({ navigation }: any) => {
       Alert.alert("Error", "Please enter email and password.");
       return;
     }
-    navigation.navigate("VerifyCode", { email });
+    navigation.navigate("VerifyCode", { email, password });
     setLoading(true);
     try {
       const credentials: RegisterRequestDto = {
@@ -23,7 +23,7 @@ const RegisterScreen = ({ navigation }: any) => {
       const response = await AuthService.register(credentials);
       if (response.success) {
         Alert.alert("Success", "Verification code sent to your email.");
-        navigation.navigate("VerifyCode", { email });
+        navigation.navigate("VerifyRegisterCode", { email, password });
       } else {
         Alert.alert("Error", response.message);
       }

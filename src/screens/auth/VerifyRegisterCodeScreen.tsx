@@ -4,7 +4,7 @@ import { VerifyRegisterCodeRequestDto } from "../../dtos/auth/RegisterDto";
 import { AuthService } from "../../services/AuthService"; // Assume this handles API calls
 
 const VerifyRegisterCodeScreen = ({ route, navigation }: any) => {
-  const { email } = route.params;
+  const { email, password } = route.params;
   const [code, setCode] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -18,9 +18,12 @@ const VerifyRegisterCodeScreen = ({ route, navigation }: any) => {
     try {
       const sendRegisterCodeRequest: VerifyRegisterCodeRequestDto = {
         email,
+        password,
         code,
       };
-      const response = await AuthService.verifyCode(sendRegisterCodeRequest);
+      const response = await AuthService.verifyRegisterCode(
+        sendRegisterCodeRequest
+      );
       if (response.success) {
         Alert.alert("Success", "Account verified! You can now log in.");
         navigation.replace("Login");

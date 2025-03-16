@@ -70,7 +70,7 @@ export const AuthService = {
   ): Promise<ApiResponse<RegisterResponseDto>> => {
     try {
       const response = await ApiClient.post<ApiResponse<RegisterResponseDto>>(
-        "/auth/register",
+        "/auth/send-register-code",
         credentials
       );
       return response.data;
@@ -79,13 +79,13 @@ export const AuthService = {
     }
   },
 
-  verifyCode: async (
+  verifyRegisterCode: async (
     verifyRequest: VerifyRegisterCodeRequestDto
   ): Promise<ApiResponse<VerifyRegisterCodeResponseDto>> => {
     try {
       const response = await ApiClient.post<
         ApiResponse<VerifyRegisterCodeResponseDto>
-      >("/auth/verify-code", verifyRequest);
+      >("/auth/verify-register-code", verifyRequest);
       return response.data;
     } catch (error: any) {
       throw new Error(error.message || "System Error");

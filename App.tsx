@@ -3,7 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
 import LoginScreen from "./src/screens/auth/LoginScreen";
 import RegisterScreen from "./src/screens/auth/RegisterScreen";
-import VerifyRegisterCodeScreen from "./src/screens/auth/VerifyCodeScreen";
+import VerifyRegisterCodeScreen from "./src/screens/auth/VerifyRegisterCodeScreen";
 import HomeScreen from "./src/screens/home/HomeScreen";
 import SplashScreen from "./src/screens/splash/SplashScreen";
 import { RootStackParamList } from "./src/types/navigation";

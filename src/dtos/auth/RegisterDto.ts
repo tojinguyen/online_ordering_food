@@ -1,7 +1,19 @@
-export interface RegisterRequestDto {}
+export interface RegisterRequestDto {
+  email: string;
+  password: string;
+}
 
-export interface RegisterResponseDto {}
+export interface RegisterResponseDto {
+  data: string;
+}
 
-export interface VerifyRegisterCodeRequestDto {}
+export interface VerifyRegisterCodeRequestDto {
+  email: string;
+  password: string;
+  code: string;
+}
 
-export interface VerifyRegisterCodeResponseDto {}
+export interface VerifyRegisterCodeResponseDto {
+  accessToken: string;
+  refreshToken: string;
+}
