@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import {
   ActivityIndicator,
   Animated,
@@ -16,7 +16,6 @@ import { getRefreshToken } from "../../utils/storage/storageAuth";
 
 const SplashScreen = ({ navigation }: SplashScreenProps) => {
   const { setIsAuthenticated } = useAuth();
-  const [isLoading, setIsLoading] = useState(true); // To control the delay
 
   // Animated logo scale
   const scaleValue = new Animated.Value(0);

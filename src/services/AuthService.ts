@@ -53,7 +53,7 @@ export const AuthService = {
     try {
       const response = await ApiClient.post<ApiResponse<LoginResponseDto>>(
         "/auth/refresh-token",
-        { credentials }
+        credentials
       );
 
       if (response.data.success && response.data.data) {
