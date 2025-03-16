@@ -10,6 +10,8 @@ export const useAuth = () => {
       const response = await AuthService.login(credentials);
       if (response.success) {
         setIsAuthenticated(true);
+      } else {
+        setIsAuthenticated(false);
       }
       return response.data;
     } catch (err: any) {

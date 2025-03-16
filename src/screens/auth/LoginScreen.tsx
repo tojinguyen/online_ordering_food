@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Alert,
   StyleSheet,
@@ -16,6 +16,13 @@ const LoginScreen = ({ navigation }: LoginScreenProps) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  useEffect(() => {
+    if (isAuthenticated) {
+      console.log("Login successful");
+      navigation.navigate("Home");
+    }
+  }, [isAuthenticated, navigation]);
+
   const handleLogin = async () => {
     const credentials: LoginRequestDto = {
       email,
@@ -27,7 +34,6 @@ const LoginScreen = ({ navigation }: LoginScreenProps) => {
 
       if (isAuthenticated) {
         console.log("Login successful");
-        navigation.navigate("Home");
       } else {
         Alert.alert("Login Failed");
       }
