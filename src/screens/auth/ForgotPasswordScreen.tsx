@@ -58,6 +58,12 @@ const ForgotPasswordScreen = ({ navigation }: any) => {
           <Text style={styles.buttonText}>Send Reset Code</Text>
         )}
       </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.backButton}
+        onPress={() => navigation.navigate("Login")}
+      >
+        <Text style={styles.backButtonText}>Back to Login</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -93,6 +99,19 @@ const styles = StyleSheet.create({
     marginVertical: 8,
   },
   buttonText: {
+    color: "#fff",
+    fontSize: 16,
+  },
+  backButton: {
+    width: "100%",
+    height: 50,
+    backgroundColor: "#6c757d",
+    borderRadius: 5,
+    justifyContent: "center",
+    alignItems: "center",
+    marginVertical: 8,
+  },
+  backButtonText: {
     color: "#fff",
     fontSize: 16,
   },
