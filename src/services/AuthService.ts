@@ -9,6 +9,7 @@ import {
   VerifyRegisterCodeRequestDto,
   VerifyRegisterCodeResponseDto,
 } from "../dtos/auth/RegisterDto";
+import { SendCodeResetPasswordRequestDto } from "../dtos/auth/ResetPasswordDto";
 import { ApiClient } from "../utils/api/ApiClient";
 import { ApiResponse } from "../utils/api/ApiTypes";
 import {
@@ -99,6 +100,35 @@ export const AuthService = {
         }
       }
 
+      return response.data;
+    } catch (error: any) {
+      throw new Error(error.message || "System Error");
+    }
+  },
+
+  forgotPassword: async (request: SendCodeResetPasswordRequestDto) => {
+    try {
+      const { email } = request;
+      const response = await ApiClient.post<ApiResponse<null>>(
+        "/auth/forgot-password",
+        { email }
+      );
+      return response.data;
+    } catch (error: any) {
+      throw new Error(error.message || "System Error");
+    }
+  },
+
+  resetPassword: async (
+    email: string,
+    password: string,
+    code: string
+  ): Promise<ApiResponse<null>> => {
+    try {
+      const response = await ApiClient.post<ApiResponse<null>>(
+        "/auth/reset-password",
+        { email, password, code }
+      );
       return response.data;
     } catch (error: any) {
       throw new Error(error.message || "System Error");

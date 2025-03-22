@@ -7,6 +7,9 @@ export type RootStackParamList = {
   Splash: undefined;
   Register: undefined;
   VerifyRegisterCode: undefined;
+  ForgotPassword: undefined;
+  ResetPassword: undefined;
+  VerifyResetPasswordCode: undefined;
 };
 
 // Định nghĩa kiểu cho props của SplashScreen
@@ -30,6 +33,21 @@ export type RegisterScreenProps = NativeStackScreenProps<
 export type VerifyRegisterCodeScreenProps = NativeStackScreenProps<
   RootStackParamList,
   "VerifyRegisterCode"
+>;
+
+export type ForgotPasswordScreenProps = NativeStackScreenProps<
+  RootStackParamList,
+  "ForgotPassword"
+>;
+
+export type ResetPasswordScreenProps = NativeStackScreenProps<
+  RootStackParamList,
+  "ResetPassword"
+>;
+
+export type VerifyResetPasswordCodeScreenProps = NativeStackScreenProps<
+  RootStackParamList,
+  "VerifyResetPasswordCode"
 >;
 
 // Định nghĩa kiểu cho props của HomeScreen
