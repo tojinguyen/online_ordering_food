@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import {
-  Alert,
   StyleSheet,
   Text,
   TextInput,
@@ -68,9 +67,9 @@ const LoginScreen = ({ navigation }: LoginScreenProps) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Welcome Back!</Text>
-      
+
       {error ? <Text style={styles.errorText}>{error}</Text> : null}
-      
+
       <TextInput
         placeholder="Email"
         style={styles.input}
@@ -88,8 +87,8 @@ const LoginScreen = ({ navigation }: LoginScreenProps) => {
         value={password}
         editable={!isLoading}
       />
-      <TouchableOpacity 
-        style={[styles.button, isLoading && styles.buttonDisabled]} 
+      <TouchableOpacity
+        style={[styles.button, isLoading && styles.buttonDisabled]}
         onPress={handleLogin}
         disabled={isLoading}
       >
@@ -97,9 +96,9 @@ const LoginScreen = ({ navigation }: LoginScreenProps) => {
           {isLoading ? "Logging in..." : "Login"}
         </Text>
       </TouchableOpacity>
-      
+
       <View style={styles.linkContainer}>
-        <TouchableOpacity onPress={handleForgotPassword}>
+        <TouchableOpacity onPress={() => navigation.navigate("ForgotPassword")}>
           <Text style={styles.link}>Forgot password?</Text>
         </TouchableOpacity>
       </View>
@@ -113,7 +112,7 @@ const LoginScreen = ({ navigation }: LoginScreenProps) => {
       <TouchableOpacity style={styles.button} onPress={handleRegister}>
         <Text style={styles.buttonText}>Create an Account</Text>
       </TouchableOpacity>
-      
+
       <TouchableOpacity
         style={[styles.button, styles.googleButton]}
         onPress={() => console.log("Login with Google")}
@@ -130,7 +129,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     padding: 24,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
   },
   logo: {
     width: 100,
@@ -145,7 +144,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     paddingHorizontal: 16,
     marginBottom: 16,
-    backgroundColor: '#f8f8f8',
+    backgroundColor: "#f8f8f8",
   },
   button: {
     width: "100%",
@@ -157,16 +156,16 @@ const styles = StyleSheet.create({
     marginVertical: 8,
   },
   buttonDisabled: {
-    backgroundColor: '#ccc',
+    backgroundColor: "#ccc",
   },
   buttonText: {
     color: "#fff",
     fontSize: 16,
-    fontWeight: '600',
+    fontWeight: "600",
   },
   linkContainer: {
-    width: '100%',
-    alignItems: 'flex-end',
+    width: "100%",
+    alignItems: "flex-end",
     marginBottom: 16,
   },
   link: {
@@ -174,33 +173,33 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   errorText: {
-    color: '#dc3545',
+    color: "#dc3545",
     marginBottom: 16,
-    textAlign: 'center',
+    textAlign: "center",
   },
   divider: {
-    width: '100%',
-    flexDirection: 'row',
-    alignItems: 'center',
+    width: "100%",
+    flexDirection: "row",
+    alignItems: "center",
     marginVertical: 20,
   },
   dividerLine: {
     flex: 1,
     height: 1,
-    backgroundColor: '#ddd',
+    backgroundColor: "#ddd",
   },
   dividerText: {
     marginHorizontal: 10,
-    color: '#666',
+    color: "#666",
   },
   googleButton: {
     backgroundColor: "#db4437",
   },
   title: {
     fontSize: 24,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 24,
-    color: '#333',
+    color: "#333",
   },
 });
 

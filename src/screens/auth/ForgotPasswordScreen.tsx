@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import {
+  ActivityIndicator,
   Alert,
   StyleSheet,
   Text,
@@ -10,17 +11,35 @@ import {
 
 const ForgotPasswordScreen = ({ navigation }: any) => {
   const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const validateEmail = (email: string) => {
+    const re = /\S+@\S+\.\S+/;
+    return re.test(email);
+  };
 
   const handleSendCode = async () => {
+    if (!validateEmail(email)) {
+      Alert.alert("Invalid Email", "Please enter a valid email address");
+      return;
+    }
+
+    setLoading(true);
     try {
-      navigation.navigate("VerifyResetPasswordCode", { email });
+      // Simulate API call
+      setTimeout(() => {
+        setLoading(false);
+        navigation.navigate("VerifyResetPasswordCode", { email });
+      }, 2000);
     } catch (error) {
+      setLoading(false);
       Alert.alert("Error", "Failed to send reset code");
     }
   };
 
   return (
     <View style={styles.container}>
+      <Text style={styles.header}>Forgot Password</Text>
       <TextInput
         placeholder="Email"
         style={styles.input}
@@ -28,8 +47,16 @@ const ForgotPasswordScreen = ({ navigation }: any) => {
         autoCapitalize="none"
         onChangeText={setEmail}
       />
-      <TouchableOpacity style={styles.button} onPress={handleSendCode}>
-        <Text style={styles.buttonText}>Send Reset Code</Text>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={handleSendCode}
+        disabled={loading}
+      >
+        {loading ? (
+          <ActivityIndicator color="#fff" />
+        ) : (
+          <Text style={styles.buttonText}>Send Reset Code</Text>
+        )}
       </TouchableOpacity>
     </View>
   );
@@ -41,6 +68,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     padding: 16,
+  },
+  header: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 24,
   },
   input: {
     width: "100%",
