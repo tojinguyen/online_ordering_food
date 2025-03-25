@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { LoginRequestDto } from "../../dtos/auth/LoginDto";
 import { useAuth } from "../../hooks/auth/useAuth";
-import { LoginScreenProps } from "../../types/navigation";
+import { LoginScreenProps } from "../../types/navigation/navigation";
 
 const LoginScreen = ({ navigation }: LoginScreenProps) => {
   const { login, isAuthenticated } = useAuth();

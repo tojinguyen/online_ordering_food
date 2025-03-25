@@ -2,20 +2,20 @@ import {
   LoginRequestDto,
   LoginResponseDto,
   RefreshAccessTokenRequestDto,
-} from "../dtos/auth/LoginDto";
+} from "../../dtos/auth/LoginDto";
 import {
   RegisterRequestDto,
   RegisterResponseDto,
   VerifyRegisterCodeRequestDto,
   VerifyRegisterCodeResponseDto,
-} from "../dtos/auth/RegisterDto";
-import { SendCodeResetPasswordRequestDto } from "../dtos/auth/ResetPasswordDto";
-import { ApiClient } from "../utils/api/ApiClient";
-import { ApiResponse } from "../utils/api/ApiTypes";
+} from "../../dtos/auth/RegisterDto";
+import { SendCodeResetPasswordRequestDto } from "../../dtos/auth/ResetPasswordDto";
+import { ApiResponse } from "../../dtos/common/ApiTypes";
+import { ApiClient } from "../../utils/api/ApiClient";
 import {
   storeAccessToken,
   storeRefreshToken,
-} from "../utils/storage/storageAuth";
+} from "../../utils/storage/storageAuth";
 
 export const AuthService = {
   login: async (

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Alert, Button, StyleSheet, Text, TextInput, View } from "react-native";
 import { VerifyRegisterCodeRequestDto } from "../../dtos/auth/RegisterDto";
-import { AuthService } from "../../services/AuthService"; // Assume this handles API calls
+import { AuthService } from "../../services/user-service/AuthService"; // Assume this handles API calls
 
 const VerifyRegisterCodeScreen = ({ route, navigation }: any) => {
   const { email, password } = route.params;

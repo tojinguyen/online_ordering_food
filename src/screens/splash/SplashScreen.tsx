@@ -10,8 +10,8 @@ import {
 } from "react-native";
 import { RefreshAccessTokenRequestDto } from "../../dtos/auth/LoginDto";
 import { useAuth } from "../../hooks/auth/useAuth";
-import { AuthService } from "../../services/AuthService";
-import { SplashScreenProps } from "../../types/navigation";
+import { AuthService } from "../../services/user-service/AuthService";
+import { SplashScreenProps } from "../../types/navigation/navigation";
 import { getRefreshToken } from "../../utils/storage/storageAuth";
 
 const SplashScreen = ({ navigation }: SplashScreenProps) => {

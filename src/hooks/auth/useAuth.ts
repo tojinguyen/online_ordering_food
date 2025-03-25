@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import { LoginRequestDto } from "../../dtos/auth/LoginDto";
-import { AuthService } from "../../services/AuthService";
+import { AuthService } from "../../services/user-service/AuthService";
 
 export const useAuth = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);

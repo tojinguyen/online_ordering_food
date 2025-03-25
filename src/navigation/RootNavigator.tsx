@@ -5,8 +5,9 @@ import LoginScreen from "../screens/auth/LoginScreen";
 import RegisterScreen from "../screens/auth/RegisterScreen";
 import VerifyRegisterCodeScreen from "../screens/auth/VerifyRegisterCodeScreen";
 import HomeScreen from "../screens/home/HomeScreen";
+import ProfileCreationScreen from "../screens/profile/ProfileCreationScreen";
 import SplashScreen from "../screens/splash/SplashScreen";
-import { RootStackParamList } from "../types/navigation";
+import { RootStackParamList } from "../types/navigation/navigation";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -45,6 +46,12 @@ const RootNavigator = () => {
         name="Home"
         component={HomeScreen}
         options={{ headerShown: false }}
+      />
+
+      <Stack.Screen
+        name="ProfileCreation"
+        component={ProfileCreationScreen}
+        options={{ title: "Create Profile" }}
       />
     </Stack.Navigator>
   );
